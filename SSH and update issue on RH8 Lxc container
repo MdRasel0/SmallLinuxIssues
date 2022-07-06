@@ -1,0 +1,16 @@
+***********************The newly Installed Red Hat 8 Lxc container on proxmox VE7.1 were unable to update its package due to some error****************************
+The error is :
+============================================================================================
+The system was failed to update package from apstream.
+===========================================================================================
+Solution is:
+
+>Go to cd /etc/yum.repos.d
+Write down the below command to update your mirrorlist
+
+# sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+# sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+After that you can easily update your dnf package
+
+# dnf update -y
